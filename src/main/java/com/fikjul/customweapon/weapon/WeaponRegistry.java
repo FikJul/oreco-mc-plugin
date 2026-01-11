@@ -96,9 +96,13 @@ public class WeaponRegistry {
                 Map<Enchantment, Integer> vanillaEnchants = new HashMap<>();
                 for (String enchantName : enchants.getKeys(false)) {
                     try {
-                        Enchantment enchant = Enchantment.getByName(enchantName.toUpperCase());
+                        // Use NamespacedKey for modern Minecraft versions
+                        org.bukkit.NamespacedKey key = org.bukkit.NamespacedKey.minecraft(enchantName.toLowerCase());
+                        Enchantment enchant = Enchantment.getByKey(key);
                         if (enchant != null) {
                             vanillaEnchants.put(enchant, enchants.getInt(enchantName));
+                        } else {
+                            plugin.getLogger().warning("Unknown enchantment: " + enchantName);
                         }
                     } catch (Exception e) {
                         plugin.getLogger().warning("Invalid enchantment: " + enchantName);
