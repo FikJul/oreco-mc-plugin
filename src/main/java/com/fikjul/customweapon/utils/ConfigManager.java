@@ -55,8 +55,15 @@ public class ConfigManager {
                 // Create parent directories
                 file.getParentFile().mkdirs();
                 
-                // Copy resource dari JAR
-                InputStream inputStream = plugin.getResource(resourcePath);
+                // Try with customweapon/ prefix first
+                String fullPath = "customweapon/" + resourcePath;
+                InputStream inputStream = plugin.getResource(fullPath);
+                
+                // Fallback to direct path if not found
+                if (inputStream == null) {
+                    inputStream = plugin.getResource(resourcePath);
+                }
+                
                 if (inputStream != null) {
                     Files.copy(inputStream, file.toPath());
                     inputStream.close();

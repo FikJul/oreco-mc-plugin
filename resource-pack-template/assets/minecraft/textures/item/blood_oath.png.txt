@@ -1,0 +1,10 @@
+# DUMMY TEXTURE - REPLACE ME!
+# 
+# This is a placeholder for the Blood Oath Saber weapon texture.
+# 
+# To replace this:
+# 1. Create a 16x16 or 32x32 PNG texture for the Blood Oath Saber
+# 2. Name it 'blood_oath.png'
+# 3. Replace this file in resource-pack-template/assets/minecraft/textures/item/
+# 
+# For a tutorial on creating weapon textures, see TUTORIAL-BLOCKBENCH.md

@@ -29,3 +29,12 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Plugin data (generated at runtime)
+token-storage.yml
+pity-data.yml
+collections.yml
+
+# Resource pack builds
+*.zip
+resource-pack.zip
