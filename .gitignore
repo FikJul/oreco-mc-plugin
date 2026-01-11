@@ -1,5 +1,6 @@
 # Maven
 target/
+**/target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -8,7 +9,6 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-.mvn/wrapper/maven-wrapper.jar
 
 # IDE
 .idea/
@@ -30,10 +30,11 @@ Thumbs.db
 *.tmp
 *.temp
 
-# Plugin data (generated at runtime)
-token-storage.yml
-pity-data.yml
-collections.yml
+# Runtime data
+**/tokens.yml
+**/collections.yml
+**/pity_data.yml
+**/rate_up_events.yml
 
 # Resource pack builds
 *.zip
