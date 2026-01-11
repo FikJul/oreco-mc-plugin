@@ -1,0 +1,221 @@
+# ════════════════════════════════════════════
+# Custom Weapon Definitions
+# ════════════════════════════════════════════
+
+weapons:
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # LEGEND TIER - Astraedge
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  astraedge:
+    display_name: "&b&lAstraedge"
+    lore:
+      - "&7Pedang yang ditempa dari pecahan bintang jatuh."
+      - "&7Tidak haus darah, tapi menghukum mereka yang ragu."
+      - ""
+      - "&d⚔ Astral Mark III"
+      - "&7Hit target 3x = +10% damage selama 4 detik"
+      - ""
+      - "&6Rarity: &eLEGEND"
+    
+    base_item: NETHERITE_SWORD
+    custom_model_data: 1001
+    damage_multiplier: 1.20  # +20% dari base netherite sword
+    attack_speed: 1.7
+    rarity: LEGEND
+    unbreakable: false
+    
+    abilities:
+      active:
+        name: "Stellar Dash"
+        trigger: RIGHT_CLICK
+        cooldown: 15  # detik
+        effects:
+          - type: DASH_FORWARD
+            distance: 6  # block
+            particle: FIREWORK
+            particle_trail: END_ROD
+            sound: ENTITY_ENDER_DRAGON_FLAP
+          - type: TRUE_DAMAGE_BOOST
+            duration: 1  # detik setelah dash
+            amount: 3  # HP true damage tambahan
+      
+      passive:
+        name: "Astral Focus"
+        condition: "health > 80%"  # HP di atas 80%
+        effect:
+          type: DAMAGE_BOOST
+          amount: 5  # +5% damage
+    
+    on_hit_effects:
+      - type: POTION
+        effect: WEAKNESS
+        level: 1
+        duration: 2  # detik
+        chance: 15  # 15%
+        particle: ENCHANTMENT_TABLE
+        sound: ENTITY_PLAYER_HURT
+    
+    enchantments:
+      vanilla:
+        SHARPNESS: 5
+        UNBREAKABLE: 3
+      custom:
+        astral_mark:
+          name: "&5⚔ Astral Mark III"
+          lore:
+            - "&7Hit target 3x berturut-turut:"
+            - "&7+10% damage selama 4 detik"
+          combo_required: 3
+          combo_timeout: 2  # detik
+          damage_bonus: 10  # +10%
+          duration: 4  # detik
+          mark_particle: ENCHANTMENT_TABLE
+          global_target: true
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # MYTHIC TIER - Blood Oath Saber
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  blood_oath_saber:
+    display_name: "&4&lBlood Oath Saber"
+    lore:
+      - "&7Pedang terkutuk yang hanya setia pada pemiliknya—"
+      - "&7semakin sakit penggunanya, semakin lapar pedang ini."
+      - ""
+      - "&c⚔ Bloodbound"
+      - "&7Damage -50% jika dipakai pemain lain"
+      - ""
+      - "&6Rarity: &5MYTHIC"
+    
+    base_item: NETHERITE_SWORD
+    custom_model_data: 1002
+    damage_multiplier: 1.30  # +30%
+    attack_speed: 1.5
+    rarity: MYTHIC
+    unbreakable: false
+    
+    soulbound:
+      enabled: true
+      type: PERMANENT
+      bind_on: FIRST_PICKUP
+      other_player_damage_penalty: 50  # -50% damage
+      lore_bound: "&cBound to: {player}"
+    
+    abilities:
+      active:
+        name: "Crimson Pact"
+        trigger: RIGHT_CLICK
+        cooldown: 25  # detik
+        cost:
+          type: HEALTH_PERCENT
+          amount: 10  # Sacrifice 10% HP
+        effects:
+          - type: POTION_SELF
+            effect: STRENGTH
+            level: 2
+            duration: 8  # detik
+          - type: LIFESTEAL
+            percent: 15  # 15% damage = HP
+            duration: 8  # detik
+            particle: REDSTONE
+            particle_color: "#FF0000"
+            sound: BLOCK_BEACON_ACTIVATE
+      
+      passive:
+        name: "Pain Conversion"
+        condition: "health < 40%"
+        effect:
+          type: LIFESTEAL
+          percent: 5  # 5% damage = HP
+          particle: DRIP_LAVA
+    
+    on_hit_effects:
+      - type: CUSTOM_DOT  # Bleeding
+        name: "Bleeding"
+        damage_per_second: 0.5
+        duration: 3  # detik
+        particle: REDSTONE
+        particle_color: "#8B0000"
+        sound: ENTITY_PLAYER_HURT
+        chance: 100  # Always apply
+    
+    enchantments:
+      vanilla:
+        SHARPNESS: 4
+        FIRE_ASPECT: 2
+      custom:
+        bloodbound:
+          name: "&cBloodbound"
+          lore:
+            - "&7Pedang ini bound ke pemiliknya"
+            - "&7Player lain: -50% damage"
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # GOD TIER - Chronoslicer
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  chronoslicer:
+    display_name: "&5&lChronoslicer"
+    lore:
+      - "&7Pedang yang mengiris waktu, bukan daging."
+      - "&7Setiap ayunan meninggalkan jejak masa depan."
+      - ""
+      - "&d⚔ Temporal Echo"
+      - "&710% chance serangan repeat (50% damage)"
+      - ""
+      - "&6Rarity: &dGOD"
+    
+    base_item: NETHERITE_SWORD
+    custom_model_data: 1003
+    damage_multiplier: 1.40  # +40%
+    attack_speed: 1.6
+    rarity: GOD
+    unbreakable: false
+    
+    abilities:
+      active:
+        name: "Time Fracture"
+        trigger: RIGHT_CLICK
+        cooldown: 30  # detik
+        effects:
+          - type: AOE_POTION
+            radius: 4  # block
+            effect: SLOW
+            level: 3
+            duration: 5  # detik
+            particle: PORTAL
+            sound: ENTITY_ENDERMAN_TELEPORT
+          - type: AOE_COOLDOWN_EXTEND
+            radius: 4
+            amount: 5  # detik tambahan cooldown
+      
+      passive:
+        name: "Momentum Shift"
+        max_stacks: 5
+        per_stack_bonus: 3  # +3% attack speed per hit
+        reset_timeout: 3  # detik
+        particle: ENCHANTMENT_TABLE
+    
+    on_hit_effects:
+      - type: POTION
+        effect: GLOWING
+        level: 1
+        duration: 3  # detik
+        chance: 20  # 20%
+      
+      - type: TEMPORAL_ECHO
+        chance: 10  # 10%
+        delay: 0.5  # detik (10 ticks)
+        damage_multiplier: 0.5  # 50% damage
+        particle: PORTAL
+        sound: BLOCK_PORTAL_TRIGGER
+        trigger_other_effects: false  # Echo TIDAK trigger combo/effects lain
+    
+    enchantments:
+      vanilla:
+        SHARPNESS: 5
+        LOOTING: 3
+      custom:
+        temporal_echo:
+          name: "&5⚔ Temporal Echo"
+          lore:
+            - "&710% chance serangan repeat"
+            - "&7dengan 50% damage (0.5s delay)"

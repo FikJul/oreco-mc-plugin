@@ -1,0 +1,34 @@
+name: CustomWeaponGacha
+version: 1.0.0
+main: com.fikjul.customweapon.CustomWeaponPlugin
+api-version: '1.21'
+author: FikJul
+description: Custom Weapon Gacha System dengan abilities dan resource pack support
+depend: [OrecoCurrency]
+
+commands:
+  gacha:
+    description: Open gacha menu or manage gacha system
+    usage: |
+      /gacha - Open gacha menu
+      /gacha balance - Check token balance
+      /gacha buytoken <amount> - Buy gacha tokens with diamonds
+      /gacha collection - View weapon collection
+      /gacha history - View roll history
+      /gacha admin rateup <banner> <rarity> <multiplier> <duration> - Activate rate-up event
+      /gacha admin reload - Reload configurations
+    permission: customweapon.gacha
+
+permissions:
+  customweapon.gacha:
+    description: Access to gacha system
+    default: true
+  customweapon.buytoken:
+    description: Buy gacha tokens
+    default: true
+  customweapon.collection:
+    description: View weapon collection
+    default: true
+  customweapon.admin:
+    description: Admin commands for gacha system
+    default: op
