@@ -31,7 +31,7 @@ public class ConfigManager {
         weaponsConfig = loadConfig("weapons.yml");
         bannersConfig = loadConfig("banners.yml");
         dropsConfig = loadConfig("drops.yml");
-        gachaConfig = loadConfig("gacha-config.yml");
+        gachaConfig = loadConfig("config.yml");
     }
 
     /**

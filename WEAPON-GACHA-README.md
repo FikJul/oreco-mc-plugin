@@ -72,7 +72,7 @@ stop
 ### 4. Konfigurasi (Opsional)
 
 Edit file konfigurasi di `plugins/CustomWeaponGacha/`:
-- `gacha-config.yml` - Pesan, token cost, boss drops, pity settings
+- `config.yml` - Pesan, token cost, boss drops, pity settings
 - `weapons.yml` - Definisi custom weapons
 - `banners.yml` - Banner gacha dan drop rates
 - `drops.yml` - Item pools untuk gacha
@@ -229,7 +229,7 @@ Untuk menampilkan custom model weapons, setup resource pack:
 
 Lihat file konfigurasi untuk customization lengkap:
 
-- **gacha-config.yml** - Messages, token cost, boss drops, pity
+- **config.yml** - Messages, token cost, boss drops, pity
 - **weapons.yml** - Weapon definitions, abilities, enchants
 - **banners.yml** - Gacha banners, drop pools, rates
 - **drops.yml** - Common/rare/epic item pools
