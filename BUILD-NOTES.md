@@ -1,111 +1,59 @@
-# Build & Deployment Notes
+# Build Notes
 
-## Project Structure
+## Multi-Module Maven Structure
 
-This repository contains **TWO** separate plugins:
+This project uses a multi-module Maven structure to build two separate plugins:
+1. **OrecoCurrency** - Currency system
+2. **CustomWeaponGacha** - Gacha system (depends on OrecoCurrency)
 
-1. **OrecoCurrency** - Currency system plugin (base plugin)
-2. **CustomWeaponGacha** - Weapon gacha plugin (depends on OrecoCurrency)
+## Building
 
-Both plugins are in the same repository but will be built as **separate JAR files**.
-
-## Build Process
-
-### Current Setup (Single JAR)
-
-The current `pom.xml` builds both plugins into a single JAR. To deploy:
+### Build Both Plugins
 
 ```bash
 mvn clean package
 ```
 
-This creates: `target/oreco-mc-plugin-1.0.0.jar` (contains both plugins)
+**Output:**
+- `OrecoCurrency/target/OrecoCurrency-1.0.0.jar`
+- `CustomWeaponGacha/target/CustomWeaponGacha-1.0.0.jar`
 
-### Recommended: Multi-Module Maven Setup
+### Build Specific Module
 
-For proper separation, convert to multi-module project:
-
-```
-oreco-mc-plugin/
-├── pom.xml (parent)
-├── OrecoCurrency/
-│   ├── pom.xml
-│   └── src/...
-└── CustomWeaponGacha/
-    ├── pom.xml (depends on OrecoCurrency)
-    └── src/...
-```
-
-### Alternative: Manual Build
-
-1. **Build OrecoCurrency first:**
-   ```bash
-   # Temporarily remove CustomWeapon sources
-   mvn clean package
-   # Output: OrecoCurrency-1.0.0.jar
-   ```
-
-2. **Install OrecoCurrency to local Maven:**
-   ```bash
-   mvn install:install-file \
-     -Dfile=target/OrecoCurrency-1.0.0.jar \
-     -DgroupId=com.fikjul \
-     -DartifactId=orecurrency \
-     -Dversion=1.0.0 \
-     -Dpackaging=jar
-   ```
-
-3. **Update CustomWeaponGacha pom.xml:**
-   ```xml
-   <dependency>
-       <groupId>com.fikjul</groupId>
-       <artifactId>orecurrency</artifactId>
-       <version>1.0.0</version>
-       <scope>provided</scope>
-   </dependency>
-   ```
-
-4. **Build CustomWeaponGacha:**
-   ```bash
-   mvn clean package
-   # Output: CustomWeaponGacha-1.0.0.jar
-   ```
-
-## Deployment
-
-### Server Setup
-
-1. **Install OrecoCurrency:**
-   ```bash
-   cp OrecoCurrency-1.0.0.jar plugins/
-   ```
-
-2. **Start server** to load OrecoCurrency
-
-3. **Install CustomWeaponGacha:**
-   ```bash
-   cp CustomWeaponGacha-1.0.0.jar plugins/
-   ```
-
-4. **Restart server**
-
-### Verification
-
-Check that both plugins loaded:
 ```bash
-plugins
+# OrecoCurrency only
+cd OrecoCurrency
+mvn clean package
+
+# CustomWeaponGacha only (requires OrecoCurrency built first)
+cd CustomWeaponGacha
+mvn clean package
 ```
 
-Should show:
-- OrecoCurrency v1.0.0
-- CustomWeaponGacha v1.0.0
+### Using build.sh (Linux/Mac)
 
-## Development Notes
+```bash
+chmod +x build.sh
+./build.sh
+```
 
-- CustomWeaponGacha **requires** OrecoCurrency to be loaded first
-- OrecoCurrency must be in `plugins/` folder before CustomWeaponGacha
-- Both plugins share the same Java version requirement (21)
-- Both plugins target Paper 1.21+
+## Installation
+
+Copy **BOTH** jar files to your server's `plugins/` folder:
+```
+server/plugins/
+├── OrecoCurrency-1.0.0.jar
+└── CustomWeaponGacha-1.0.0.jar
+```
+
+CustomWeaponGacha **requires** OrecoCurrency to function (hard dependency).
+
+## Development
+
+- Parent POM manages shared configuration
+- Modules inherit from parent
+- CustomWeaponGacha can access OrecoCurrency classes at compile-time
+- Both plugins are independent at runtime (separate jar files)
 
 ## Integration Points
 
@@ -139,10 +87,5 @@ Make sure OrecoCurrency API remains stable between versions!
 **Error:** Cannot find OrecoCurrency classes
 
 **Fix:**
-- OrecoCurrency must be in classpath
-- Use Maven dependency or install locally
-- Or use multi-module Maven structure
-
----
-
-**For production deployment, recommend converting to multi-module Maven project!**
+- Build from root directory with `mvn clean package`
+- Parent POM will ensure correct build order

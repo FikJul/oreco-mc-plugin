@@ -1,38 +1,39 @@
 #!/bin/bash
-# Build script for Oreco MC Plugins
 
-echo "════════════════════════════════════════════"
-echo "  Building Oreco MC Plugins..."
-echo "════════════════════════════════════════════"
-
-# Check if Maven is installed
-if ! command -v mvn &> /dev/null; then
-    echo "❌ Maven not found! Please install Maven first."
-    exit 1
-fi
+echo "=========================================="
+echo "Building Oreco MC Plugin (Multi-Module)"
+echo "=========================================="
 
 # Clean previous builds
-echo "🧹 Cleaning previous builds..."
+echo "Cleaning previous builds..."
 mvn clean
 
-# Build project
-echo "🔨 Building with Maven..."
+# Build all modules
+echo "Building all modules..."
 mvn package
 
-# Check build status
-if [ $? -eq 0 ]; then
-    echo ""
-    echo "════════════════════════════════════════════"
-    echo "  ✅ Build successful!"
-    echo "════════════════════════════════════════════"
-    echo ""
-    echo "📦 Output files:"
-    ls -lh target/*.jar
-    echo ""
+# Check build results
+echo ""
+echo "=========================================="
+echo "Build Results:"
+echo "=========================================="
+
+if [ -f "OrecoCurrency/target/OrecoCurrency-1.0.0.jar" ]; then
+    echo "✓ OrecoCurrency-1.0.0.jar built successfully"
+    ls -lh OrecoCurrency/target/OrecoCurrency-1.0.0.jar
 else
-    echo ""
-    echo "════════════════════════════════════════════"
-    echo "  ❌ Build failed!"
-    echo "════════════════════════════════════════════"
-    exit 1
+    echo "✗ OrecoCurrency build failed!"
 fi
+
+if [ -f "CustomWeaponGacha/target/CustomWeaponGacha-1.0.0.jar" ]; then
+    echo "✓ CustomWeaponGacha-1.0.0.jar built successfully"
+    ls -lh CustomWeaponGacha/target/CustomWeaponGacha-1.0.0.jar
+else
+    echo "✗ CustomWeaponGacha build failed!"
+fi
+
+echo ""
+echo "Copy these files to your server's plugins folder:"
+echo "  - OrecoCurrency/target/OrecoCurrency-1.0.0.jar"
+echo "  - CustomWeaponGacha/target/CustomWeaponGacha-1.0.0.jar"
+echo "=========================================="
