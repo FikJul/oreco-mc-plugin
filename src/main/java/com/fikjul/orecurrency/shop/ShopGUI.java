@@ -3,10 +3,8 @@ package com.fikjul.orecurrency.shop;
 import com.fikjul.orecurrency.OrecoPlugin;
 import com.fikjul.orecurrency.currency.CurrencyManager;
 import com.fikjul.orecurrency.currency.CurrencyType;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextDecoration;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -41,7 +39,7 @@ public class ShopGUI implements Listener {
         int size = plugin.getConfig().getInt("shop.gui_size", 54);
         String title = colorize(plugin.getConfig().getString("shop.gui_title", "&6&lOreco Shop"));
         
-        Inventory inv = Bukkit.createInventory(null, size, LegacyComponentSerializer.legacyAmpersand().deserialize(title));
+        Inventory inv = Bukkit.createInventory(null, size, title);
 
         // Ambil info kategori dari config
         Map<String, Map<String, Object>> categoryInfo = shopManager.getCategoryInfo();
@@ -68,15 +66,12 @@ public class ShopGUI implements Listener {
             ItemStack categoryItem = new ItemStack(iconMaterial);
             ItemMeta meta = categoryItem.getItemMeta();
             
-            meta.displayName(LegacyComponentSerializer.legacyAmpersand().deserialize(displayName)
-                .decoration(TextDecoration.ITALIC, false));
+            meta.setDisplayName(colorize(displayName));
             
-            List<Component> lore = new ArrayList<>();
-            lore.add(LegacyComponentSerializer.legacyAmpersand().deserialize("&7Click to browse")
-                .decoration(TextDecoration.ITALIC, false));
-            lore.add(LegacyComponentSerializer.legacyAmpersand().deserialize("&7Items: &e" + items.size())
-                .decoration(TextDecoration.ITALIC, false));
-            meta.lore(lore);
+            List<String> lore = new ArrayList<>();
+            lore.add(colorize("&7Click to browse"));
+            lore.add(colorize("&7Items: &e" + items.size()));
+            meta.setLore(lore);
             
             categoryItem.setItemMeta(meta);
 
@@ -95,7 +90,7 @@ public class ShopGUI implements Listener {
         String titleTemplate = plugin.getConfig().getString("shop.category_gui_title", "&6&lShop - {category}");
         String title = colorize(titleTemplate.replace("{category}", category));
         
-        Inventory inv = Bukkit.createInventory(null, 54, LegacyComponentSerializer.legacyAmpersand().deserialize(title));
+        Inventory inv = Bukkit.createInventory(null, 54, title);
 
         List<ShopItem> items = shopManager.getItemsByCategory(category);
         Map<CurrencyType, Integer> playerBalance = currencyManager.getBalance(player);
@@ -111,45 +106,39 @@ public class ShopGUI implements Listener {
             // Set display name
             String displayName = shopItem.getDisplayName();
             if (displayName != null) {
-                meta.displayName(LegacyComponentSerializer.legacyAmpersand().deserialize(displayName)
-                    .decoration(TextDecoration.ITALIC, false));
+                meta.setDisplayName(colorize(displayName));
             }
 
             // Build lore
-            List<Component> lore = new ArrayList<>();
+            List<String> lore = new ArrayList<>();
             
             // Custom lore dari config
             if (shopItem.getLore() != null) {
                 for (String line : shopItem.getLore()) {
-                    lore.add(LegacyComponentSerializer.legacyAmpersand().deserialize(line)
-                        .decoration(TextDecoration.ITALIC, false));
+                    lore.add(colorize(line));
                 }
             }
 
-            lore.add(Component.empty());
-            lore.add(LegacyComponentSerializer.legacyAmpersand().deserialize("&6Price:")
-                .decoration(TextDecoration.ITALIC, false));
+            lore.add("");
+            lore.add(colorize("&6Price:"));
             
             // Tampilkan harga
             for (Map.Entry<CurrencyType, Integer> priceEntry : shopItem.getPrice().entrySet()) {
                 String priceLine = "  &e" + priceEntry.getValue() + " &7" + priceEntry.getKey().getDisplayName();
-                lore.add(LegacyComponentSerializer.legacyAmpersand().deserialize(priceLine)
-                    .decoration(TextDecoration.ITALIC, false));
+                lore.add(colorize(priceLine));
             }
 
-            lore.add(Component.empty());
+            lore.add("");
 
             // Cek apakah player punya cukup balance
             boolean canAfford = totalCopperBalance >= shopItem.getTotalCopperPrice();
             if (canAfford) {
-                lore.add(LegacyComponentSerializer.legacyAmpersand().deserialize("&aClick to purchase!")
-                    .decoration(TextDecoration.ITALIC, false));
+                lore.add(colorize("&aClick to purchase!"));
             } else {
-                lore.add(LegacyComponentSerializer.legacyAmpersand().deserialize("&cInsufficient balance!")
-                    .decoration(TextDecoration.ITALIC, false));
+                lore.add(colorize("&cInsufficient balance!"));
             }
 
-            meta.lore(lore);
+            meta.setLore(lore);
             displayItem.setItemMeta(meta);
 
             inv.setItem(slot++, displayItem);
@@ -158,8 +147,7 @@ public class ShopGUI implements Listener {
         // Back button
         ItemStack backButton = new ItemStack(Material.ARROW);
         ItemMeta backMeta = backButton.getItemMeta();
-        backMeta.displayName(LegacyComponentSerializer.legacyAmpersand().deserialize("&cBack to Main Menu")
-            .decoration(TextDecoration.ITALIC, false));
+        backMeta.setDisplayName(colorize("&cBack to Main Menu"));
         backButton.setItemMeta(backMeta);
         inv.setItem(49, backButton);
 
@@ -174,7 +162,7 @@ public class ShopGUI implements Listener {
         if (!(event.getWhoClicked() instanceof Player)) return;
         
         Player player = (Player) event.getWhoClicked();
-        String title = LegacyComponentSerializer.legacyAmpersand().serialize(event.getView().title());
+        String title = event.getView().getTitle();
 
         // Cek apakah ini shop GUI
         String shopTitle = colorize(plugin.getConfig().getString("shop.gui_title", "&6&lOreco Shop"));
@@ -281,8 +269,6 @@ public class ShopGUI implements Listener {
      */
     private String colorize(String text) {
         if (text == null) return "";
-        return LegacyComponentSerializer.legacyAmpersand().serialize(
-            LegacyComponentSerializer.legacyAmpersand().deserialize(text)
-        );
+        return ChatColor.translateAlternateColorCodes('&', text);
     }
 }

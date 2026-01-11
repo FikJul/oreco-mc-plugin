@@ -3,8 +3,7 @@ package com.fikjul.orecurrency.commands;
 import com.fikjul.orecurrency.OrecoPlugin;
 import com.fikjul.orecurrency.currency.CurrencyManager;
 import com.fikjul.orecurrency.currency.CurrencyType;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -60,8 +59,6 @@ public class BalanceCommand implements CommandExecutor {
 
     private String colorize(String text) {
         if (text == null) return "";
-        return LegacyComponentSerializer.legacyAmpersand().serialize(
-            LegacyComponentSerializer.legacyAmpersand().deserialize(text)
-        );
+        return ChatColor.translateAlternateColorCodes('&', text);
     }
 }

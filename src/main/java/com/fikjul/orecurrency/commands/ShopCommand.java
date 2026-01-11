@@ -5,7 +5,7 @@ import com.fikjul.orecurrency.currency.CurrencyType;
 import com.fikjul.orecurrency.shop.ShopGUI;
 import com.fikjul.orecurrency.shop.ShopItem;
 import com.fikjul.orecurrency.shop.ShopManager;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -254,8 +254,6 @@ public class ShopCommand implements CommandExecutor {
 
     private String colorize(String text) {
         if (text == null) return "";
-        return LegacyComponentSerializer.legacyAmpersand().serialize(
-            LegacyComponentSerializer.legacyAmpersand().deserialize(text)
-        );
+        return ChatColor.translateAlternateColorCodes('&', text);
     }
 }
