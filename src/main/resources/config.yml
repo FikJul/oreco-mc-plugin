@@ -1,0 +1,34 @@
+# Oreco MC Plugin Configuration
+
+messages:
+  prefix: "&8[&6Oreco&8] &r"
+  insufficient_balance: "&cBalance tidak cukup!"
+  purchase_success: "&aItem berhasil dibeli!"
+  conversion_success: "&aKonversi berhasil!"
+  conversion_failed: "&cKonversi gagal! Periksa balance Anda."
+  no_permission: "&cAnda tidak punya permission!"
+  
+currency:
+  # Nilai konversi (dalam copper equivalent)
+  values:
+    copper: 1
+    iron: 64
+    gold: 6144      # 96 * 64
+    emerald: 393216 # 64 * 6144
+    diamond: 100663296 # 256 * 393216
+    netherite: 25769803776 # 256 * 100663296
+    
+  # Aturan konversi
+  conversion_rules:
+    # true = bisa convert dua arah
+    # false/not listed = tidak bisa convert
+    copper_iron: true
+    iron_gold: true
+    gold_emerald: true
+    emerald_diamond: false  # PENTING: Diamond tidak bisa dari emerald
+    diamond_netherite: true # Hanya satu arah: diamond -> netherite
+
+shop:
+  gui_title: "&6&lOreco Shop"
+  category_gui_title: "&6&lShop - {category}"
+  gui_size: 54 # Chest size (must be multiple of 9)

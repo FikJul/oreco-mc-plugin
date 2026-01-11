@@ -1,0 +1,101 @@
+# Oreco MC Plugin - Shop Configuration
+# Format harga: <currency_type>: <amount>
+# Valid currencies: copper, iron, gold, emerald, diamond, netherite
+
+items:
+  DIAMOND_SWORD:
+    display_name: "&bDiamond Sword"
+    category: "Weapons"
+    price:
+      diamond: 2
+      emerald: 10
+    lore:
+      - "&7A powerful diamond sword"
+      - "&7Perfect for combat"
+      
+  ENCHANTED_GOLDEN_APPLE:
+    display_name: "&6Enchanted Golden Apple"
+    category: "Food"
+    price:
+      emerald: 15
+      gold: 32
+    lore:
+      - "&7Grants powerful effects"
+      
+  NETHERITE_HELMET:
+    display_name: "&5Netherite Helmet"
+    category: "Armor"
+    price:
+      netherite: 1
+      diamond: 5
+    lore:
+      - "&7Ultimate protection"
+      
+  ELYTRA:
+    display_name: "&dElytra"
+    category: "Items"
+    price:
+      diamond: 10
+      emerald: 64
+    lore:
+      - "&7Fly through the skies"
+      
+  SHULKER_BOX:
+    display_name: "&eShulker Box"
+    category: "Blocks"
+    price:
+      emerald: 32
+      gold: 16
+    lore:
+      - "&7Portable storage"
+      
+  BEACON:
+    display_name: "&bBeacon"
+    category: "Blocks"
+    price:
+      diamond: 8
+      emerald: 128
+    lore:
+      - "&7Powerful beacon"
+      
+  TOTEM_OF_UNDYING:
+    display_name: "&aTotem of Undying"
+    category: "Items"
+    price:
+      emerald: 256
+    lore:
+      - "&7Saves you from death"
+
+categories:
+  Weapons:
+    display_name: "&cWeapons"
+    icon: DIAMOND_SWORD
+    slot: 10
+  Armor:
+    display_name: "&9Armor"
+    icon: DIAMOND_CHESTPLATE
+    slot: 12
+  Tools:
+    display_name: "&eTools"
+    icon: DIAMOND_PICKAXE
+    slot: 14
+  Blocks:
+    display_name: "&6Blocks"
+    icon: BRICKS
+    slot: 16
+  Items:
+    display_name: "&dItems"
+    icon: ENDER_PEARL
+    slot: 19
+  Food:
+    display_name: "&aFood"
+    icon: COOKED_BEEF
+    slot: 21
+  Redstone:
+    display_name: "&cRedstone"
+    icon: REDSTONE
+    slot: 23
+  Misc:
+    display_name: "&7Misc"
+    icon: BOOK
+    slot: 25
