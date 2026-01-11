@@ -1,0 +1,153 @@
+# ════════════════════════════════════════════
+# Gacha Banner Configuration
+# ════════════════════════════════════════════
+
+banners:
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # SWORD BANNER (Active)
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  sword_banner:
+    display_name: "&6⚔ Sword Gacha"
+    icon: NETHERITE_SWORD
+    enabled: true
+    
+    # Pricing
+    cost_single: 1   # 1 token per single roll
+    cost_multi: 9    # 9 token untuk 10 roll (save 1 token)
+    
+    # Drop Rates (Total harus 100%)
+    drop_rates:
+      common: 50   # 50%
+      rare: 25     # 25%
+      epic: 10     # 10%
+      legend: 10   # 10% - Astraedge
+      mythic: 4    # 4% - Blood Oath Saber
+      god: 1       # 1% - Chronoslicer
+    
+    # Drop Pool per Rarity
+    drop_pool:
+      # Common drops (50% total)
+      common:
+        - material: COBBLESTONE
+          amount: 16
+          weight: 10
+        
+        - material: IRON_ORE
+          amount: 8
+          weight: 8
+        
+        - material: COAL
+          amount: 4
+          weight: 8
+        
+        - material: STONE_SWORD
+          amount: 1
+          weight: 5
+        
+        - material: IRON_SWORD
+          amount: 1
+          weight: 4
+      
+      # Rare drops (25% total)
+      rare:
+        - material: GOLD_ORE
+          amount: 8
+          weight: 10
+        
+        - material: DIAMOND
+          amount: 4
+          weight: 8
+        
+        - material: DIAMOND_SWORD
+          amount: 1
+          name: "&9Enchanted Diamond Sword"
+          enchants:
+            SHARPNESS: 2
+          weight: 7
+      
+      # Epic drops (10% total)
+      epic:
+        - material: EMERALD
+          amount: 2
+          weight: 8
+        
+        - material: DIAMOND_SWORD
+          amount: 1
+          name: "&5Epic Diamond Sword"
+          enchants:
+            SHARPNESS: 4
+            FIRE_ASPECT: 1
+          weight: 6
+        
+        - material: NETHERITE_SWORD
+          amount: 1
+          weight: 4
+      
+      # Legend drops (10% total)
+      legend:
+        - weapon: astraedge
+          weight: 1
+      
+      # Mythic drops (4% total)
+      mythic:
+        - weapon: blood_oath_saber
+          weight: 1
+      
+      # God drops (1% total)
+      god:
+        - weapon: chronoslicer
+          weight: 1
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # BOW BANNER (Coming Soon)
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  bow_banner:
+    display_name: "&a🏹 Bow Gacha"
+    icon: BOW
+    enabled: false
+    
+    cost_single: 1
+    cost_multi: 9
+    
+    drop_rates:
+      common: 50
+      rare: 25
+      epic: 10
+      legend: 10
+      mythic: 4
+      god: 1
+    
+    drop_pool:
+      common: []
+      rare: []
+      epic: []
+      legend: []
+      mythic: []
+      god: []
+
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # SPECIAL BANNER (Coming Soon)
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  special_banner:
+    display_name: "&d🔱 Special Gacha"
+    icon: TRIDENT
+    enabled: false
+    
+    cost_single: 1
+    cost_multi: 9
+    
+    drop_rates:
+      common: 50
+      rare: 25
+      epic: 10
+      legend: 10
+      mythic: 4
+      god: 1
+    
+    drop_pool:
+      common: []
+      rare: []
+      epic: []
+      legend: []
+      mythic: []
+      god: []

@@ -1,0 +1,125 @@
+# ════════════════════════════════════════════
+# Gacha Drop Pool Definitions
+# Definisi lengkap untuk common/rare/epic drops
+# ════════════════════════════════════════════
+
+# Common tier drops (untuk filler items)
+common_drops:
+  materials:
+    - material: COBBLESTONE
+      amount_min: 16
+      amount_max: 32
+      
+    - material: IRON_ORE
+      amount_min: 4
+      amount_max: 16
+      
+    - material: COAL
+      amount_min: 4
+      amount_max: 8
+      
+    - material: STICK
+      amount_min: 8
+      amount_max: 16
+      
+    - material: STONE_SWORD
+      amount_min: 1
+      amount_max: 1
+      
+    - material: IRON_SWORD
+      amount_min: 1
+      amount_max: 1
+      
+    - material: WOODEN_SWORD
+      amount_min: 1
+      amount_max: 1
+
+# Rare tier drops
+rare_drops:
+  materials:
+    - material: GOLD_ORE
+      amount_min: 4
+      amount_max: 12
+      
+    - material: DIAMOND
+      amount_min: 1
+      amount_max: 4
+      
+    - material: LAPIS_LAZULI
+      amount_min: 8
+      amount_max: 16
+      
+    - material: REDSTONE
+      amount_min: 8
+      amount_max: 16
+  
+  enchanted_items:
+    - material: DIAMOND_SWORD
+      name: "&9Enchanted Diamond Sword"
+      enchants:
+        SHARPNESS: 2
+      
+    - material: IRON_SWORD
+      name: "&9Enchanted Iron Sword"
+      enchants:
+        SHARPNESS: 3
+        KNOCKBACK: 1
+      
+    - material: GOLDEN_SWORD
+      name: "&9Golden Blade"
+      enchants:
+        SHARPNESS: 4
+        LOOTING: 1
+
+# Epic tier drops
+epic_drops:
+  materials:
+    - material: EMERALD
+      amount_min: 1
+      amount_max: 3
+      
+    - material: NETHERITE_SCRAP
+      amount_min: 1
+      amount_max: 2
+      
+    - material: ANCIENT_DEBRIS
+      amount_min: 1
+      amount_max: 2
+  
+  enchanted_items:
+    - material: DIAMOND_SWORD
+      name: "&5Epic Diamond Sword"
+      enchants:
+        SHARPNESS: 4
+        FIRE_ASPECT: 1
+      lore:
+        - "&7A powerful enchanted sword"
+        - "&7with devastating power"
+      
+    - material: NETHERITE_SWORD
+      name: "&5Netherite Blade"
+      enchants:
+        SHARPNESS: 3
+      lore:
+        - "&7Forged from ancient debris"
+      
+    - material: DIAMOND_SWORD
+      name: "&5Flame Sword"
+      enchants:
+        SHARPNESS: 3
+        FIRE_ASPECT: 2
+        KNOCKBACK: 1
+      lore:
+        - "&7Burns enemies with flame"
+
+# Boss token drops configuration (dari config.yml tapi bisa dikustomisasi disini)
+boss_token_item:
+  material: NETHER_STAR
+  name: "&d&lGacha Token"
+  lore:
+    - "&7Use this token to roll"
+    - "&7in the Weapon Gacha!"
+    - ""
+    - "&eRight-click to add to balance"
+  glow: true
+  custom_model_data: 0

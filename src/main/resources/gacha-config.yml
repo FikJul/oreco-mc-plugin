@@ -1,0 +1,102 @@
+# ════════════════════════════════════════════
+# Custom Weapon Gacha - Main Configuration
+# ════════════════════════════════════════════
+
+# Pesan-pesan plugin
+messages:
+  prefix: "&8[&dGacha&8] &r"
+  
+  # Token messages
+  token_balance: "&7Token balance: &d{balance} Token"
+  token_purchase_success: "&aBerhasil membeli &d{amount} Token &adengan &b{cost} Diamond!"
+  token_insufficient_diamond: "&cDiamond tidak cukup! Butuh: &b{cost} Diamond &c(di enderchest)"
+  token_added: "&aToken berhasil ditambahkan! Total: &d{total} Token"
+  
+  # Gacha messages
+  gacha_insufficient_token: "&cToken tidak cukup! Butuh: &d{cost} Token"
+  gacha_rolling: "&eMemutar gacha..."
+  gacha_result_common: "&7Kamu mendapat: &f{item}"
+  gacha_result_rare: "&7Kamu mendapat: &9{item}"
+  gacha_result_epic: "&7Kamu mendapat: &5{item}"
+  gacha_result_legend: "&7Kamu mendapat: &6{item} &e✦"
+  gacha_result_mythic: "&7Kamu mendapat: &c{item} &4✦✦"
+  gacha_result_god: "&7Kamu mendapat: &d{item} &5✦✦✦"
+  
+  # Pity messages
+  pity_soft_start: "&e⚠ Soft pity aktif! Chance naik setiap roll."
+  pity_hard_trigger: "&6⚡ Hard pity! Roll berikutnya guaranteed &dGOD tier!"
+  pity_reset: "&7Pity counter direset."
+  
+  # Collection messages
+  collection_new_weapon: "&a✓ NEW! &7Weapon baru ditambahkan ke koleksi!"
+  collection_duplicate: "&7Weapon sudah ada di koleksi."
+  
+  # Admin messages
+  admin_rateup_activated: "&aRate-up event aktif! {banner} - {rarity} x{multiplier} selama {duration}"
+  admin_rateup_ended: "&7Rate-up event berakhir."
+  admin_reload_success: "&aKonfigurasi berhasil di-reload!"
+  
+  # Error messages
+  no_permission: "&cAnda tidak punya permission!"
+  invalid_banner: "&cBanner tidak valid!"
+  invalid_amount: "&cJumlah tidak valid!"
+  inventory_full: "&cInventory penuh! Bersihkan inventory Anda."
+
+# Token Purchase System
+token_purchase:
+  enabled: true
+  currency: diamond  # Currency dari OrecoCurrency
+  cost_per_token: 64  # 1 token = 64 diamond
+  
+# Boss Drops Configuration
+boss_drops:
+  ender_dragon:
+    enabled: true
+    chance: 20  # 20% drop chance
+    amount_min: 2
+    amount_max: 5
+    broadcast: true
+    broadcast_message: "&6[Gacha] &e{player} &7obtained &d{amount}x Gacha Token &7from Ender Dragon!"
+  
+  wither:
+    enabled: true
+    chance: 40  # 40% drop chance
+    amount_min: 1
+    amount_max: 3
+    broadcast: true
+    broadcast_message: "&6[Gacha] &e{player} &7obtained &d{amount}x Gacha Token &7from Wither!"
+
+# Pity System Configuration
+pity_system:
+  enabled: true
+  guaranteed_god_tier: 90  # Roll ke-90 pasti GOD tier
+  guaranteed_mythic_up: 50  # Roll ke-50 pasti MYTHIC atau GOD
+  soft_pity_start: 70  # Mulai roll 70, chance naik
+  soft_pity_increment: 5  # +5% per roll setelah soft pity
+  carry_over_between_banners: false  # Pity tidak carry antar banner
+  reset_on_god_tier: true  # Reset pity saat dapat GOD
+  reset_on_mythic: false  # Tidak reset saat dapat MYTHIC
+
+# Gacha Animation Settings
+animation:
+  enabled: true
+  duration_ticks: 60  # 3 seconds (60 ticks)
+  spin_speed_start: 2  # Fast spinning
+  spin_speed_end: 10  # Slow down
+  sound_enabled: true
+  particle_enabled: true
+  
+  # Sounds per rarity
+  sounds:
+    common: "BLOCK_NOTE_BLOCK_PLING"
+    rare: "BLOCK_NOTE_BLOCK_CHIME"
+    epic: "BLOCK_NOTE_BLOCK_BELL"
+    legend: "ENTITY_PLAYER_LEVELUP"
+    mythic: "UI_TOAST_CHALLENGE_COMPLETE"
+    god: "ITEM_TOTEM_USE"
+
+# Performance Settings
+performance:
+  async_loading: true  # Load weapons async
+  cache_weapon_items: true  # Cache ItemStack weapons
+  auto_save_interval: 300  # Auto-save every 5 minutes (300 seconds)
