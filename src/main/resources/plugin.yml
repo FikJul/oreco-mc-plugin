@@ -1,0 +1,34 @@
+name: OrecoCurrency
+version: 1.0.0
+main: com.fikjul.orecurrency.OrecoPlugin
+api-version: '1.21'
+author: FikJul
+description: Ore-based currency system with admin shop
+
+commands:
+  balance:
+    description: Check your currency balance
+    aliases: [bal, money]
+    permission: oreco.balance
+  currency:
+    description: Convert currencies
+    usage: /currency convert <amount> <from> <to>
+    permission: oreco.currency
+  shop:
+    description: Open shop or manage shop (admin)
+    usage: /shop [admin] [add|remove|reload|setcategory|list]
+    permission: oreco.shop
+
+permissions:
+  oreco.balance:
+    description: Check balance
+    default: true
+  oreco.currency:
+    description: Convert currency
+    default: true
+  oreco.shop:
+    description: Open shop
+    default: true
+  oreco.shop.admin:
+    description: Manage shop items
+    default: op
